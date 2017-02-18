@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "48730150340",
+    "firebase_url": "https://trim-project.firebaseio.com",
+    "project_id": "trim-project",
+    "storage_bucket": "trim-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:48730150340:android:0c11c7dae0f1777c",
+        "android_client_info": {
+          "package_name": "id.sch.smktelkom_mlg.project2.xirpl50413212734.trim"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "48730150340-kuhe4u5i6vgt7u2m356mvh5p1akudue1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.sch.smktelkom_mlg.project2.xirpl50413212734.trim",
+            "certificate_hash": "7CE1DB3430A8ADE3E4A94B17EC46F82262F523CE"
+          }
+        },
+        {
+          "client_id": "48730150340-72p24qa15tm9ln90vkvb24q6u5c826r2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUyVbcl-L0V7opF7iqoIsYQav7II6M2gw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "48730150340-72p24qa15tm9ln90vkvb24q6u5c826r2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
