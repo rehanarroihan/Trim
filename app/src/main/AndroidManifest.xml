@@ -30,6 +30,8 @@
             android:name=".RegisterActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeUser" />
+        <activity android:name=".HelpActivity" />
+        <activity android:name=".AboutActivity"></activity>
     </application>
 
 </manifest>
