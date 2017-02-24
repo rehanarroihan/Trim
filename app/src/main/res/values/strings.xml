@@ -14,4 +14,17 @@
     <string name="dont_have">Don\'t Have Account ? Register.</string>
     <string name="already_have">Already Have an Account ? Login.</string>
 
+    <string name="username_empty">Username is required</string>
+    <string name="username6">Username min. 6 char</string>
+    <string name="email_notmatch">Email doesn\'t match format</string>
+    <string name="email_empty">Email is required</string>
+    <string name="password_empty">Password is required</string>
+    <string name="password8">Password min. 8 char</string>
+
+    <string name="please_wait">Please Wait</string>
+    <string name="success">Successful</string>
+    <string name="success_message">Registration successful, please login</string>
+    <string name="failed">Failed</string>
+    <string name="failed_message">Registration failed, please try again</string>
+
 </resources>
