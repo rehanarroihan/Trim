@@ -24,7 +24,9 @@
     <string name="please_wait">Please Wait</string>
     <string name="success">Successful</string>
     <string name="success_message">Registration successful, please login</string>
+    <string name="success1_message">Login successful, please login</string>
     <string name="failed">Failed</string>
     <string name="failed_message">Registration failed, please try again</string>
+    <string name="failed1_message">Login failed, please try again</string>
 
 </resources>
