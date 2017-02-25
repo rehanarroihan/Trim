@@ -18,12 +18,10 @@ public class SplashActivity extends AppCompatActivity {
 
         if (mAuth.getCurrentUser() == null) {
             Intent i = new Intent(SplashActivity.this, LoginActivity.class);
-            i.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_NO_HISTORY);
             startActivity(i);
             finish();
         } else {
             Intent u = new Intent(SplashActivity.this, MainActivity.class);
-            u.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_NO_HISTORY);
             startActivity(u);
             finish();
         }

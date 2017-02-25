@@ -104,7 +104,6 @@ public class LoginActivity extends AppCompatActivity {
                 btLogin.setText(getResources().getString(R.string.success));
 
                 Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(i);
                 finish();
             }

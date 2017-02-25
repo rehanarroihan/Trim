@@ -37,4 +37,13 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!--Menu-->
+    <string name="home">Home</string>
+    <string name="todolist">To-Do List</string>
+    <string name="money">Money Management</string>
+    <string name="notes">Notes</string>
+    <string name="help">Help</string>
+    <string name="about">About</string>
+    <string name="signout">Logout</string>
+
 </resources>

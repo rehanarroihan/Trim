@@ -14,6 +14,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -27,10 +28,15 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     TextView tvUsernameDrawer, tvEmailDrawer;
+    private Menu menu;
+    private NavigationView navigationView;
+    private FloatingActionButton fab;
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDB;
     private DatabaseReference mDBuser;
+
+    private String page = "home";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +45,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setVisibility(View.GONE);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                if (page == "todo") {
+                    Snackbar.make(view, "Todolist", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                } else if (page == "notes") {
+                    Snackbar.make(view, "Notes", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                } else if (page == "money") {
+                    Snackbar.make(view, "Money Management", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                }
             }
         });
 
@@ -54,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         changePage(R.id.nav_home);
@@ -114,23 +127,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        this.menu = menu;
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    private void hideOption(int id) {
+        menu.findItem(id).setVisible(false);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_add_todo) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -146,31 +158,45 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Fragment fragment = null;
         if (id == R.id.nav_home) {
             fragment = new HomeFragment();
-            setTitle("Home");
+            setTitle(getResources().getString(R.string.home));
+            fab.setVisibility(View.GONE);
+
         } else if (id == R.id.nav_todolist) {
             fragment = new TodoFragment();
-            setTitle("ToDoList");
+            setTitle(getResources().getString(R.string.todolist));
+            page = "todo";
+            fab.setVisibility(View.VISIBLE);
+
         } else if (id == R.id.nav_notes) {
             fragment = new NotesFragment();
-            setTitle("Notes");
+            setTitle(getResources().getString(R.string.notes));
+            page = "notes";
+            fab.setVisibility(View.VISIBLE);
+
         } else if (id == R.id.nav_money) {
             fragment = new MoneyFragment();
-            setTitle("Money Management");
+            setTitle(getResources().getString(R.string.money));
+            page = "money";
+            fab.setVisibility(View.VISIBLE);
+
         } else if (id == R.id.nav_help) {
             fragment = new HomeFragment();
-            setTitle("Home");
+            setTitle(getResources().getString(R.string.home));
+            navigationView.setCheckedItem(R.id.nav_home);
 
             Intent h = new Intent(MainActivity.this, HelpActivity.class);
             startActivity(h);
         } else if (id == R.id.nav_about) {
             fragment = new HomeFragment();
-            setTitle("Home");
+            setTitle(getResources().getString(R.string.home));
+            navigationView.setCheckedItem(R.id.nav_home);
 
             Intent a = new Intent(MainActivity.this, AboutActivity.class);
             startActivity(a);
         } else if (id == R.id.nav_logout) {
             fragment = new HomeFragment();
-            setTitle("Home");
+            setTitle(getResources().getString(R.string.home));
+            navigationView.setCheckedItem(R.id.nav_home);
 
             new AlertDialog.Builder(this)
                     .setTitle(getResources().getString(R.string.logout))
