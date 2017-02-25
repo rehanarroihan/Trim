@@ -157,26 +157,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             fragment = new MoneyFragment();
             setTitle("Money Management");
         } else if (id == R.id.nav_help) {
+            fragment = new HomeFragment();
+            setTitle("Home");
+
             Intent h = new Intent(MainActivity.this, HelpActivity.class);
             startActivity(h);
         } else if (id == R.id.nav_about) {
+            fragment = new HomeFragment();
+            setTitle("Home");
+
             Intent a = new Intent(MainActivity.this, AboutActivity.class);
             startActivity(a);
         } else if (id == R.id.nav_logout) {
-            mAuth.signOut();
+            fragment = new HomeFragment();
+            setTitle("Home");
 
             new AlertDialog.Builder(this)
-                    .setTitle(getResources().getString(R.string.failed))
-                    .setMessage(getResources().getString(R.string.failed1_message))
+                    .setTitle(getResources().getString(R.string.logout))
+                    .setMessage(getResources().getString(R.string.logout_message))
                     .setCancelable(true)
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    .setPositiveButton(getResources().getString(R.string.yes_option), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            mAuth.signOut();
+
                             Intent b = new Intent(MainActivity.this, SplashActivity.class);
                             startActivity(b);
                             finish();
                         }
-                    }).show();
+                    }).setNegativeButton(getResources().getString(R.string.cancel_option), null).show();
         }
 
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commitNow();
