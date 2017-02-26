@@ -31,7 +31,8 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeUser" />
         <activity android:name=".HelpActivity" />
-        <activity android:name=".AboutActivity"></activity>
+        <activity android:name=".AboutActivity" />
+        <activity android:name=".NotesActivity"></activity>
     </application>
 
 </manifest>

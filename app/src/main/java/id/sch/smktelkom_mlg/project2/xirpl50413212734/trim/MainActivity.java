@@ -54,7 +54,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if (page == "todo") {
                     Snackbar.make(view, "Todolist", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                 } else if (page == "notes") {
-                    Snackbar.make(view, "Notes", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                    Intent n = new Intent(MainActivity.this, NotesActivity.class);
+                    startActivity(n);
                 } else if (page == "money") {
                     Snackbar.make(view, "Money Management", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                 }
@@ -131,10 +132,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         inflater.inflate(R.menu.main, menu);
         this.menu = menu;
         return super.onCreateOptionsMenu(menu);
-    }
-
-    private void hideOption(int id) {
-        menu.findItem(id).setVisible(false);
     }
 
     @Override
