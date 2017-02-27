@@ -38,6 +38,9 @@
     <string name="back_alert">Are you sure want to exit ? Your change will not save</string>
     <string name="yes_option">Yes</string>
     <string name="cancel_option">Cancel</string>
+    <string name="del">Delete</string>
+    <string name="del_message">Are you sure want to delete note ?</string>
+    <string name="del_success">Note deleted</string>
 
     <!--Menu-->
     <string name="home">Home</string>
@@ -52,6 +55,7 @@
     <string name="add_note">Add Note</string>
     <string name="title">Title</string>
     <string name="save">Save</string>
+    <string name="delete">Delete</string>
     <string name="content">Content</string>
     <string name="charac">Character</string>
     <string name="not_saved">Item not saved</string>

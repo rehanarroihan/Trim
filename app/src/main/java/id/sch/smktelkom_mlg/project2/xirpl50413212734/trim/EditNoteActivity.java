@@ -101,7 +101,26 @@ public class EditNoteActivity extends AppCompatActivity {
             onBackPressed();
             return true;
         }
+        if (item.getItemId() == R.id.action_delete_note) {
+            deleteNote();
+        }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void deleteNote() {
+        new AlertDialog.Builder(this)
+                .setTitle(getResources().getString(R.string.del))
+                .setMessage(getResources().getString(R.string.del_message))
+                .setCancelable(true)
+                .setPositiveButton(getResources().getString(R.string.yes_option), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mDatabase.child(mNoteKey).removeValue();
+
+                        finish();
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.not_saved), Toast.LENGTH_SHORT).show();
+                    }
+                }).setNegativeButton(getResources().getString(R.string.cancel_option), null).show();
     }
 
     private void updateNote() {
