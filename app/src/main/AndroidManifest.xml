@@ -32,7 +32,8 @@
             android:theme="@style/AppThemeUser" />
         <activity android:name=".HelpActivity" />
         <activity android:name=".AboutActivity" />
-        <activity android:name=".NotesActivity"></activity>
+        <activity android:name=".NotesActivity" />
+        <activity android:name=".EditNoteActivity"></activity>
     </application>
 
 </manifest>

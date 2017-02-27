@@ -22,8 +22,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.jaredrummler.android.device.DeviceName;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.text.DateFormat;
+import java.util.Date;
 
 public class LoginActivity extends AppCompatActivity {
     private TextView tvLoginTitle, tvGoRegister;
@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         mDB = FirebaseDatabase.getInstance();
-        mDBuser = mDB.getReference().child("User");
+        mDBuser = mDB.getReference().child("user_info");
 
         etEmail = (EditText) findViewById(R.id.editTextLoginEmail);
         etPassword = (EditText) findViewById(R.id.editTextLoginPassword);
@@ -92,13 +92,10 @@ public class LoginActivity extends AppCompatActivity {
                 DatabaseReference lastLogin = mDBuser.child(mAuth.getCurrentUser().getUid()).child("last_login");
                 String deviceName = DeviceName.getDeviceName(); //Mengambil nama device
 
-                //---------------------START MENGAMBIL DATA WAKTU---------------------//
-                Calendar c = Calendar.getInstance();
-                SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-                String dataWaktu = df.format(c.getTime());
-                //---------------------END MENGAMBIL DATA WAKTU---------------------//
+                Date date = new Date();
+                String time = DateFormat.getDateTimeInstance().format(date);
 
-                lastLogin.child("time").setValue(dataWaktu);
+                lastLogin.child("time").setValue(time);
                 lastLogin.child("device").setValue(deviceName);
 
                 btLogin.setText(getResources().getString(R.string.success));

@@ -48,7 +48,7 @@
     <string name="about">About</string>
     <string name="signout">Logout</string>
 
-    <!--Add Note Activity-->
+    <!--Add/Edit Note Activity-->
     <string name="add_note">Add Note</string>
     <string name="title">Title</string>
     <string name="save">Save</string>
@@ -56,6 +56,8 @@
     <string name="charac">Character</string>
     <string name="not_saved">Item not saved</string>
     <string name="note_saved">Note saved</string>
+    <string name="edit_note">Edit Note</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

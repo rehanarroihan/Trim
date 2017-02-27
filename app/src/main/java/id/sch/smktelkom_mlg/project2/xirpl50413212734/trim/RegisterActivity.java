@@ -21,8 +21,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.text.DateFormat;
+import java.util.Date;
 
 public class RegisterActivity extends AppCompatActivity {
     private TextView tvRegTitle, tvGoLogin;
@@ -40,7 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         mDB = FirebaseDatabase.getInstance();
-        mDBuser = mDB.getReference().child("User");
+        mDBuser = mDB.getReference().child("user_info");
 
         tvRegTitle = (TextView) findViewById(R.id.textViewRegTitle);
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/diamonde.ttf");
@@ -117,13 +117,10 @@ public class RegisterActivity extends AppCompatActivity {
                         currentUser.child("email").setValue(email);
                         currentUser.child("password").setValue(password);
 
-                        //---------------------START MENGAMBIL DATA WAKTU---------------------//
-                        Calendar c = Calendar.getInstance();
-                        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-                        String dataWaktu = df.format(c.getTime());
-                        //---------------------END MENGAMBIL DATA WAKTU---------------------//
+                        Date date = new Date();
+                        String time = DateFormat.getDateTimeInstance().format(date);
 
-                        currentUser.child("date_created").setValue(dataWaktu);
+                        currentUser.child("date_created").setValue(time);
                         btRegister.setEnabled(true);
 
                         new AlertDialog.Builder(RegisterActivity.this)

@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mAuth = FirebaseAuth.getInstance();
         mDB = FirebaseDatabase.getInstance();
-        mDBuser = mDB.getReference().child("User");
+        mDBuser = mDB.getReference().child("user_info");
 
         //------------START MENGAMBIL DATA USERNAME DARI ACCOUNT----------//
         DatabaseReference userName = mDBuser.child(mAuth.getCurrentUser().getUid()).child("username");

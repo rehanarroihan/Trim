@@ -21,21 +21,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.DateFormat;
-import java.util.Date;
-
-public class NotesActivity extends AppCompatActivity {
-    private FirebaseDatabase mDB;
-    private DatabaseReference mDBnote, mDBnoteUser;
-    private FirebaseAuth mAuth;
-    private Long jumlahData;
-    private Integer currentPostId;
-
-    private String dbCurrentUser;
-
+public class EditNoteActivity extends AppCompatActivity {
     private EditText etTitleNote, etContentNote;
     private TextView tvChar;
-
     //Character counter
     private final TextWatcher etContentNoteWatcher = new TextWatcher() {
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -49,66 +37,65 @@ public class NotesActivity extends AppCompatActivity {
         public void afterTextChanged(Editable s) {
         }
     };
+    private String mNoteKey;
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase mDB;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_notes);
-        setTitle(getResources().getString(R.string.add_note));
+        setContentView(R.layout.activity_edit_note);
+        setTitle(getResources().getString(R.string.edit_note));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        etTitleNote = (EditText) findViewById(R.id.editTextTitleNote);
-        etContentNote = (EditText) findViewById(R.id.editTextContentNotes);
-        etContentNote.addTextChangedListener(etContentNoteWatcher);
-        tvChar = (TextView) findViewById(R.id.textViewChar);
 
         mAuth = FirebaseAuth.getInstance();
         mDB = FirebaseDatabase.getInstance();
+        mDatabase = mDB.getReference().child("note").child(mAuth.getCurrentUser().getUid().toString());
 
-        dbCurrentUser = mAuth.getCurrentUser().getUid().toString();
+        etTitleNote = (EditText) findViewById(R.id.editTextTitleNote2);
+        etContentNote = (EditText) findViewById(R.id.editTextContentNotes2);
+        etContentNote.addTextChangedListener(etContentNoteWatcher);
+        tvChar = (TextView) findViewById(R.id.textViewChar2);
 
-        mDBnote = mDB.getReference().child("note");
-        mDBnoteUser = mDBnote.child(dbCurrentUser);
-        mDBnoteUser.addValueEventListener(new ValueEventListener() {
+        mNoteKey = getIntent().getExtras().getString("note_key");
+        Log.d("FirebaseCounter", mNoteKey);
+
+        //Toast.makeText(getApplicationContext(), mNoteKey, Toast.LENGTH_SHORT).show();
+
+        fillData();
+    }
+
+    private void fillData() {
+        mDatabase.child(mNoteKey).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                jumlahData = dataSnapshot.getChildrenCount() - 1;
-                currentPostId = jumlahData.intValue() + 1;
-                String strValue = jumlahData.toString();
-                Boolean isDataNotExist = false;
-                while (isDataNotExist == false) {
-                    Boolean cleanCheck = dataSnapshot.child(currentPostId.toString()).exists();
-                    if (cleanCheck) {
-                        Log.d("FirebaseCounter", "Child with ID " + currentPostId.toString() + " already Exists! +1");
-                        currentPostId += 1;
-                    } else {
-                        Log.d("FirebaseCounter", "Child with ID " + currentPostId.toString() + " Available to Use!");
-                        isDataNotExist = true;
-                    }
-                }
-                Log.d("FirebaseCounter", strValue);
-                Log.d("FirebaseCounter", "Next Post Should be : " + currentPostId.toString());
+                String noteTitle = (String) dataSnapshot.child("title").getValue();
+                String noteContent = (String) dataSnapshot.child("content").getValue();
+
+                etTitleNote.setText(noteTitle);
+                etContentNote.setText(noteContent);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.d("FirebaseError", databaseError.getMessage());
+
             }
         });
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_notes, menu);
+        getMenuInflater().inflate(R.menu.menu_notes_edit, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_save_note) {
-            uploadNote();
+        if (id == R.id.action_save_note_edit) {
+            updateNote();
+            return true;
         }
         if (item.getItemId() == android.R.id.home) {
             onBackPressed();
@@ -117,24 +104,16 @@ public class NotesActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void uploadNote() {
+    private void updateNote() {
         String title = etTitleNote.getText().toString();
         String content = etContentNote.getText().toString();
-
-        Date date = new Date();
-        String time = DateFormat.getDateTimeInstance().format(date);
 
         if (TextUtils.isEmpty(title) || TextUtils.isEmpty(content)) {
             return;
         }
 
-        // Database Reference for note
-        DatabaseReference dbnote = mDBnoteUser.child(currentPostId.toString());
-
-        Log.d("FirebaseCounter", mAuth.getCurrentUser().getUid());
-        dbnote.child("title").setValue(title);
-        dbnote.child("content").setValue(content);
-        dbnote.child("time").setValue(time);
+        mDatabase.child(mNoteKey).child("title").setValue(title);
+        mDatabase.child(mNoteKey).child("content").setValue(content);
 
         Toast.makeText(getApplicationContext(), getResources().getString(R.string.note_saved), Toast.LENGTH_SHORT).show();
         finish();
