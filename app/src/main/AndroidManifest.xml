@@ -34,7 +34,8 @@
         <activity android:name=".AboutActivity" />
         <activity android:name=".NotesActivity" />
         <activity android:name=".EditNoteActivity" />
-        <activity android:name=".TodoActivity"></activity>
+        <activity android:name=".TodoActivity" />
+        <activity android:name=".EditTodoActivity"></activity>
     </application>
 
 </manifest>

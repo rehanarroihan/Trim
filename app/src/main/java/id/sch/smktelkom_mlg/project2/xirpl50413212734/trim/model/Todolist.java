@@ -5,9 +5,9 @@ package id.sch.smktelkom_mlg.project2.xirpl50413212734.trim.model;
  */
 
 public class Todolist {
-    String title;
-    String detail;
-    String date;
+    private String title;
+    private String detail;
+    private String date;
 
     public Todolist() {
         //empty contructor

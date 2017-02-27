@@ -63,6 +63,7 @@ public class NotesFragment extends Fragment {
         mNoteList = (RecyclerView) getView().findViewById(R.id.recyclerViewNotes);
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
         mNoteList.setLayoutManager(layoutManager);
+        mNoteList.setHasFixedSize(true);
 
         mDBnoteUser.addValueEventListener(new ValueEventListener() {
             @Override

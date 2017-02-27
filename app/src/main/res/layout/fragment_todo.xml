@@ -1,18 +1,29 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="id.sch.smktelkom_mlg.project2.xirpl50413212734.trim.fragment.TodoFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/textViewNoTodo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ToDoList Fragment" />
+        android:layout_gravity="center"
+        android:padding="17dp"
+        android:text="@string/no_notes"
+        android:textAlignment="center"
+        android:textColor="#BDBDBD"
+        android:textSize="22sp"
+        android:textStyle="italic"
+        android:visibility="gone" />
 
-</LinearLayout>
+    <ProgressBar
+        android:id="@+id/progressBarTodo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="visible" />
+
+    <include layout="@layout/content_todo" />
+
+</FrameLayout>

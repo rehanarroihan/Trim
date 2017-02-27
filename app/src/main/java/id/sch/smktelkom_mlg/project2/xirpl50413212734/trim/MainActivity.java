@@ -57,7 +57,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View view) {
                 //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                 if (page == "todo") {
-                    Snackbar.make(view, "Todolist", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                    Intent t = new Intent(MainActivity.this, TodoActivity.class);
+                    startActivity(t);
                 } else if (page == "notes") {
                     Intent n = new Intent(MainActivity.this, NotesActivity.class);
                     startActivity(n);

@@ -68,6 +68,8 @@
     <string name="what_msg">What to do</string>
     <string name="todo_detail">Detail / Description</string>
     <string name="when_msg">When will be done</string>
+    <string name="todo_saved">Item saved</string>
+    <string name="mark_done">Mark as Done</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
