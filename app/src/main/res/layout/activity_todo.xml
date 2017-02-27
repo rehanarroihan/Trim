@@ -53,6 +53,7 @@
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="13dp"
+            android:editable="false"
             android:hint="Tanggal"
             android:inputType="none" />
 

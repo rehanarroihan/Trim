@@ -65,6 +65,7 @@
 
     <!--Add/Edit Todolist Activity-->
     <string name="add_todo">Add To-Do List</string>
+    <string name="edit_todo">Edit To-Do List</string>
     <string name="what_msg">What to do</string>
     <string name="todo_detail">Detail / Description</string>
     <string name="when_msg">When will be done</string>

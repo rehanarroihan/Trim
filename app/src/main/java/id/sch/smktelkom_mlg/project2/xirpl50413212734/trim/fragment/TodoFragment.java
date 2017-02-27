@@ -1,6 +1,7 @@
 package id.sch.smktelkom_mlg.project2.xirpl50413212734.trim.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -21,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import id.sch.smktelkom_mlg.project2.xirpl50413212734.trim.EditTodoActivity;
 import id.sch.smktelkom_mlg.project2.xirpl50413212734.trim.R;
 import id.sch.smktelkom_mlg.project2.xirpl50413212734.trim.model.Todolist;
 
@@ -104,11 +106,28 @@ public class TodoFragment extends Fragment {
         ) {
             @Override
             protected void populateViewHolder(TodolistViewHolder viewHolder, Todolist model, final int position) {
+                final String note_key = getRef(position).getKey();
+
                 viewHolder.setTitle(model.getTitle());
                 viewHolder.setDetail(model.getDetail());
                 viewHolder.setDate(model.getDate());
-            }
 
+                viewHolder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent r = new Intent(getActivity(), EditTodoActivity.class);
+                        r.putExtra("note_key", note_key);
+                        startActivity(r);
+                    }
+                });
+
+                viewHolder.mView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        return false;
+                    }
+                });
+            }
         };
 
         mTodoList.setAdapter(firebaseRecyclerAdapter);
