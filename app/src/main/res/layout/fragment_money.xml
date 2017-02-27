@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="id.sch.smktelkom_mlg.project2.xirpl50413212734.trim.MoneyFragment">
+    tools:context="id.sch.smktelkom_mlg.project2.xirpl50413212734.trim.fragment.MoneyFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

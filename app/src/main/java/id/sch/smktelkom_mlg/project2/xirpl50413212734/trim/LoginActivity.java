@@ -111,7 +111,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 new AlertDialog.Builder(LoginActivity.this)
                         .setTitle(getResources().getString(R.string.failed))
-                        .setMessage(getResources().getString(R.string.failed1_message))
+                        .setMessage(getResources().getString(R.string.failed1_message) + ". " + e.getMessage())
                         .setCancelable(false)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override

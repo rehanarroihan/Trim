@@ -26,6 +26,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import id.sch.smktelkom_mlg.project2.xirpl50413212734.trim.fragment.HomeFragment;
+import id.sch.smktelkom_mlg.project2.xirpl50413212734.trim.fragment.MoneyFragment;
+import id.sch.smktelkom_mlg.project2.xirpl50413212734.trim.fragment.NotesFragment;
+import id.sch.smktelkom_mlg.project2.xirpl50413212734.trim.fragment.TodoFragment;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     TextView tvUsernameDrawer, tvEmailDrawer;
     private Menu menu;

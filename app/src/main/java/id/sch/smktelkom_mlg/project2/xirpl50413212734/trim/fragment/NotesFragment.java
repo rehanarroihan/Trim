@@ -1,4 +1,4 @@
-package id.sch.smktelkom_mlg.project2.xirpl50413212734.trim;
+package id.sch.smktelkom_mlg.project2.xirpl50413212734.trim.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,17 +6,23 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import id.sch.smktelkom_mlg.project2.xirpl50413212734.trim.EditNoteActivity;
+import id.sch.smktelkom_mlg.project2.xirpl50413212734.trim.R;
 import id.sch.smktelkom_mlg.project2.xirpl50413212734.trim.model.Note;
 
 /**
@@ -24,11 +30,13 @@ import id.sch.smktelkom_mlg.project2.xirpl50413212734.trim.model.Note;
  */
 
 public class NotesFragment extends Fragment {
-    private static FrameLayout sckbrFrm;
     private RecyclerView mNoteList;
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDB;
     private DatabaseReference mDBnote, mDBnoteUser;
+    private TextView tvNoNote;
+
+    private ProgressBar pbNotes;
 
     public NotesFragment() {
         // Required empty public constructor
@@ -44,7 +52,8 @@ public class NotesFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        sckbrFrm = (FrameLayout) getView().findViewById(R.id.snckbrFrameLayout);
+        tvNoNote = (TextView) getView().findViewById(R.id.textViewNoNote);
+        pbNotes = (ProgressBar) getView().findViewById(R.id.progressBarNotes);
 
         mAuth = FirebaseAuth.getInstance();
         mDB = FirebaseDatabase.getInstance();
@@ -54,6 +63,32 @@ public class NotesFragment extends Fragment {
         mNoteList = (RecyclerView) getView().findViewById(R.id.recyclerViewNotes);
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
         mNoteList.setLayoutManager(layoutManager);
+
+        mDBnoteUser.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Long jumlahChild;
+                jumlahChild = dataSnapshot.getChildrenCount();
+                String strValue = jumlahChild.toString();
+                Log.d("FirebaseCounter", "Jumlah child " + strValue);
+                if (jumlahChild == 0) {
+                    Log.d("FirebaseCounter", "No item yet !");
+                    pbNotes.setVisibility(View.GONE);
+                    tvNoNote.setVisibility(View.VISIBLE);
+                } else {
+                    pbNotes.setVisibility(View.GONE);
+                    tvNoNote.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d("FirebaseCounter", databaseError.getMessage());
+                pbNotes.setVisibility(View.GONE);
+                tvNoNote.setVisibility(View.VISIBLE);
+                tvNoNote.setText("Error." + " " + databaseError.getMessage());
+            }
+        });
     }
 
     @Override
