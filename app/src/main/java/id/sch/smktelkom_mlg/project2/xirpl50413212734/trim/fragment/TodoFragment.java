@@ -4,6 +4,7 @@ package id.sch.smktelkom_mlg.project2.xirpl50413212734.trim.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -34,7 +36,7 @@ public class TodoFragment extends Fragment {
     private RecyclerView mTodoList;
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDB;
-    private DatabaseReference mDBtodo, mDBtodoUser;
+    private DatabaseReference mDBtodo, mDBtodoUser, mDatabase;
     private TextView tvNoTodo;
 
     private ProgressBar pbTodo;
@@ -61,6 +63,8 @@ public class TodoFragment extends Fragment {
         mDB = FirebaseDatabase.getInstance();
         mDBtodo = mDB.getReference().child("todo");
         mDBtodoUser = mDBtodo.child(mAuth.getCurrentUser().getUid().toString());
+
+        mDatabase = mDB.getReference().child("todo").child(mAuth.getCurrentUser().getUid().toString());
 
         mTodoList = (RecyclerView) getView().findViewById(R.id.recyclerViewTodo);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -127,6 +131,14 @@ public class TodoFragment extends Fragment {
                         return false;
                     }
                 });
+
+                viewHolder.llDone.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mDatabase.child(note_key).removeValue();
+                        Snackbar.make(getView(), getResources().getString(R.string.done), Snackbar.LENGTH_LONG).show();
+                    }
+                });
             }
         };
 
@@ -135,10 +147,13 @@ public class TodoFragment extends Fragment {
 
     public static class TodolistViewHolder extends RecyclerView.ViewHolder {
         View mView;
+        LinearLayout llDone;
 
         public TodolistViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
+
+            llDone = (LinearLayout) mView.findViewById(R.id.linearLayoutDone);
         }
 
         public void setTitle(String title) {

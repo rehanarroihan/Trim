@@ -72,6 +72,7 @@
     <string name="when_msg">When will be done</string>
     <string name="todo_saved">Item saved</string>
     <string name="mark_done">Mark as Done</string>
+    <string name="done">Task Done</string>
 
     <!--Home Fragment-->
     <string name="welcome">Welcome,</string>
