@@ -43,6 +43,7 @@
     <string name="del_success">Note deleted</string>
 
     <!--Menu-->
+    <string name="signin_as">Sign in as</string>
     <string name="home">Home</string>
     <string name="todolist">To-Do List</string>
     <string name="money">Money Management</string>
@@ -71,6 +72,9 @@
     <string name="when_msg">When will be done</string>
     <string name="todo_saved">Item saved</string>
     <string name="mark_done">Mark as Done</string>
+
+    <!--Home Fragment-->
+    <string name="welcome">Welcome,</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
