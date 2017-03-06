@@ -28,7 +28,6 @@ import id.sch.smktelkom_mlg.project2.xirpl50413212734.trim.EditTodoActivity;
 import id.sch.smktelkom_mlg.project2.xirpl50413212734.trim.R;
 import id.sch.smktelkom_mlg.project2.xirpl50413212734.trim.model.Todolist;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */

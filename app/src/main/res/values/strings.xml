@@ -23,7 +23,7 @@
     <string name="password_empty">Password is required</string>
     <string name="password8">Password min. 8 char</string>
 
-    <string name="please_wait">Please Wait</string>
+    <string name="please_wait">Loading ..</string>
     <string name="success">Successful</string>
     <string name="success_message">Registration successful, please login</string>
     <string name="success1_message">Login successful, please login</string>
@@ -76,6 +76,7 @@
 
     <!--Home Fragment-->
     <string name="welcome">Welcome,</string>
+    <string name="you_have">You have</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

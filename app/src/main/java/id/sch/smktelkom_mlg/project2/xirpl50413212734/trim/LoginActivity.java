@@ -54,9 +54,9 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         tvLoginTitle = (TextView) findViewById(R.id.textViewLoginTitle);
-        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/diamonde.ttf");
+        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/yananeka.ttf");
         tvLoginTitle.setTypeface(custom_font);
-        tvLoginTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 40);
+        tvLoginTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 50);
 
         tvGoRegister = (TextView) findViewById(R.id.textViewGoRegister);
         tvGoRegister.setOnClickListener(new View.OnClickListener() {
@@ -107,6 +107,7 @@ public class LoginActivity extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+                btLogin.setText(getResources().getString(R.string.login_title));
                 btLogin.setEnabled(true);
 
                 new AlertDialog.Builder(LoginActivity.this)

@@ -43,9 +43,9 @@ public class RegisterActivity extends AppCompatActivity {
         mDBuser = mDB.getReference().child("user_info");
 
         tvRegTitle = (TextView) findViewById(R.id.textViewRegTitle);
-        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/diamonde.ttf");
+        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/yananeka.ttf");
         tvRegTitle.setTypeface(custom_font);
-        tvRegTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 40);
+        tvRegTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 50);
 
         etUsername = (EditText) findViewById(R.id.editTextRegUsername);
         etEmail = (EditText) findViewById(R.id.editTextRegEmail);
@@ -142,6 +142,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+                btRegister.setText(getResources().getString(R.string.reg_title));
                 btRegister.setEnabled(true);
 
                 new AlertDialog.Builder(RegisterActivity.this)
