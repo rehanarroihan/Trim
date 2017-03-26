@@ -1,5 +1,6 @@
 package id.sch.smktelkom_mlg.project2.xirpl50413212734.trim;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -25,10 +26,10 @@ import java.text.DateFormat;
 import java.util.Date;
 
 public class RegisterActivity extends AppCompatActivity {
+    public static Activity RegA;
     private TextView tvRegTitle, tvGoLogin;
     private EditText etUsername, etEmail, etPassword;
     private Button btRegister;
-
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDB;
     private DatabaseReference mDBuser;
@@ -37,6 +38,8 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        RegA = this;
 
         mAuth = FirebaseAuth.getInstance();
         mDB = FirebaseDatabase.getInstance();

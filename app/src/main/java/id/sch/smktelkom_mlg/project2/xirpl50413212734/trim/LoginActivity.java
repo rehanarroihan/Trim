@@ -1,5 +1,6 @@
 package id.sch.smktelkom_mlg.project2.xirpl50413212734.trim;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -26,10 +27,10 @@ import java.text.DateFormat;
 import java.util.Date;
 
 public class LoginActivity extends AppCompatActivity {
+    public static Activity LogA;
     private TextView tvLoginTitle, tvGoRegister;
     private EditText etEmail, etPassword;
     private Button btLogin;
-
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDB;
     private DatabaseReference mDBuser;
@@ -102,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 Intent i = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(i);
-                finish();
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

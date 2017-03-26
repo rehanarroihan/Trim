@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -27,7 +26,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import id.sch.smktelkom_mlg.project2.xirpl50413212734.trim.fragment.HomeFragment;
-import id.sch.smktelkom_mlg.project2.xirpl50413212734.trim.fragment.MoneyFragment;
 import id.sch.smktelkom_mlg.project2.xirpl50413212734.trim.fragment.NotesFragment;
 import id.sch.smktelkom_mlg.project2.xirpl50413212734.trim.fragment.TodoFragment;
 
@@ -62,8 +60,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 } else if (page == "notes") {
                     Intent n = new Intent(MainActivity.this, NotesActivity.class);
                     startActivity(n);
-                } else if (page == "money") {
-                    Snackbar.make(view, "Money Management", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                 }
             }
         });
@@ -77,9 +73,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        changePage(R.id.nav_home);
-        navigationView.setCheckedItem(R.id.nav_home);
-
         //Brain code start here
         View hView = navigationView.getHeaderView(0); //Mengambil view dari drawer
         tvUsernameDrawer = (TextView) hView.findViewById(R.id.textViewUsernameDrawer);
@@ -89,7 +82,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mDB = FirebaseDatabase.getInstance();
         mDBuser = mDB.getReference().child("user_info");
 
-        //------------START MENGAMBIL DATA USERNAME DARI ACCOUNT----------//
+        retrieveData();
+        //Fragment home di panggil
+        changePage(R.id.nav_home);
+        navigationView.setCheckedItem(R.id.nav_home);
+    }
+
+    private void retrieveData() {
+        //Mengambil data username yang login
         DatabaseReference userName = mDBuser.child(mAuth.getCurrentUser().getUid()).child("username");
         userName.addValueEventListener(new ValueEventListener() {
             @Override
@@ -103,9 +103,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             }
         });
-        //------------END MENGAMBIL DATA USERNAME DARI ACCOUNT----------//
 
-        //------------START MENGAMBIL DATA EMAIL DARI ACCOUNT----------//
+        //Mengambil data email yang login
         DatabaseReference eMail = mDBuser.child(mAuth.getCurrentUser().getUid()).child("email");
         eMail.addValueEventListener(new ValueEventListener() {
             @Override
@@ -119,7 +118,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             }
         });
-        //------------END MENGAMBIL DATA EMAIL DARI ACCOUNT----------//
     }
 
     @Override
@@ -176,23 +174,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             page = "notes";
             fab.setVisibility(View.VISIBLE);
 
-        } else if (id == R.id.nav_money) {
-            fragment = new MoneyFragment();
-            setTitle(getResources().getString(R.string.money));
-            page = "money";
-            fab.setVisibility(View.VISIBLE);
-
-        } else if (id == R.id.nav_help) {
-            fragment = new HomeFragment();
-            setTitle(getResources().getString(R.string.home));
-            navigationView.setCheckedItem(R.id.nav_home);
-
-            Intent h = new Intent(MainActivity.this, HelpActivity.class);
-            startActivity(h);
         } else if (id == R.id.nav_about) {
             fragment = new HomeFragment();
             setTitle(getResources().getString(R.string.home));
             navigationView.setCheckedItem(R.id.nav_home);
+            fab.setVisibility(View.GONE);
 
             Intent a = new Intent(MainActivity.this, AboutActivity.class);
             startActivity(a);
@@ -200,6 +186,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             fragment = new HomeFragment();
             setTitle(getResources().getString(R.string.home));
             navigationView.setCheckedItem(R.id.nav_home);
+            fab.setVisibility(View.GONE);
 
             new AlertDialog.Builder(this)
                     .setTitle(getResources().getString(R.string.logout))

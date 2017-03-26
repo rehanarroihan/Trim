@@ -1,6 +1,11 @@
 package id.sch.smktelkom_mlg.project2.xirpl50413212734.trim;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -25,13 +30,33 @@ public class SplashActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mDB = FirebaseDatabase.getInstance();
 
+        if (!konek(this)) {
+            new AlertDialog.Builder(SplashActivity.this)
+                    .setTitle(getResources().getString(R.string.failed))
+                    .setMessage("No internet connection")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+                    }).show();
+        }
+
         if (mAuth.getCurrentUser() == null) {
-            Intent i = new Intent(SplashActivity.this, LoginActivity.class);
+            Intent i = new Intent(SplashActivity.this, LandingActivity.class);
             startActivity(i);
             finish();
         } else {
             handleLoading();
         }
+    }
+
+    public boolean konek(Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
+        return activeNetwork != null
+                && activeNetwork.isConnectedOrConnecting();
     }
 
     private void handleLoading() {
@@ -52,6 +77,17 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                //Show alert dialog
+                new AlertDialog.Builder(SplashActivity.this)
+                        .setTitle(getResources().getString(R.string.failed))
+                        .setMessage(getResources().getString(R.string.failed1_message) + ". " + databaseError.getMessage())
+                        .setCancelable(false)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                            }
+                        }).show();
             }
         });
     }

@@ -5,6 +5,9 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>
 
+    <string name="landing">Welcome to</string>
+    <string name="landing2">TRIM</string>
+
     <!--Login Register Activity-->
     <string name="login_title">Login</string>
     <string name="reg_title">Register</string>
@@ -77,6 +80,15 @@
     <!--Home Fragment-->
     <string name="welcome">Welcome,</string>
     <string name="you_have">You have</string>
+
+    <!--About-->
+    <string name="about1">
+        "TRIM" was created for fill up score in lesson mobile programming
+        in SMK Telkom Malang. We offer feature notes and to-do list that saved in
+        online database.
+    </string>
+    <string name="about2">Thanks To</string>
+    <string name="about3">Allah SWT || Parents || Teacher of SMK Telkom Malang || Stackoverflow</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
