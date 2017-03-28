@@ -60,7 +60,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="-3dp"
-                        android:text="25 notes"
+                        android:text="null notes"
                         android:textSize="25sp" />
 
                 </LinearLayout>
@@ -109,7 +109,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="-3dp"
-                        android:text="25 to-do list"
+                        android:text="null to-do list"
                         android:textAlignment="viewEnd"
                         android:textSize="25sp" />
 

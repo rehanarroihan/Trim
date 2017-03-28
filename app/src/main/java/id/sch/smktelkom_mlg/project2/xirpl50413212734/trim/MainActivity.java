@@ -1,6 +1,7 @@
 package id.sch.smktelkom_mlg.project2.xirpl50413212734.trim;
 
 import android.app.AlertDialog;
+import android.app.Notification;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,8 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -25,13 +25,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import br.com.goncalves.pugnotification.notification.PugNotification;
 import id.sch.smktelkom_mlg.project2.xirpl50413212734.trim.fragment.HomeFragment;
 import id.sch.smktelkom_mlg.project2.xirpl50413212734.trim.fragment.NotesFragment;
 import id.sch.smktelkom_mlg.project2.xirpl50413212734.trim.fragment.TodoFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     TextView tvUsernameDrawer, tvEmailDrawer;
-    private Menu menu;
     private NavigationView navigationView;
     private FloatingActionButton fab;
 
@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DatabaseReference mDBuser;
 
     private String page = "home";
+    private String allNote, allTodo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +84,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mDBuser = mDB.getReference().child("user_info");
 
         retrieveData();
-        //Fragment home di panggil
         changePage(R.id.nav_home);
         navigationView.setCheckedItem(R.id.nav_home);
     }
@@ -118,6 +118,54 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             }
         });
+
+        //Mengambil informasi jumlah notes
+        DatabaseReference dbNote = mDB.getReference().child("note").child(mAuth.getCurrentUser().getUid());
+        dbNote.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Long jumlahNote = dataSnapshot.getChildrenCount();
+                allNote = Long.toString(jumlahNote);
+                Log.d("FirebaseCounter", allNote);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        //Mengambil informasi jumlah to-do list
+        DatabaseReference dbTodo = mDB.getReference().child("todo").child(mAuth.getCurrentUser().getUid());
+        dbTodo.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                long jumlahTodo = dataSnapshot.getChildrenCount();
+                allTodo = Long.toString(jumlahTodo);
+                Log.d("FirebaseCounter", "Todo List " + allTodo);
+
+                if (allTodo != null) {
+                    push();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void push() {
+        PugNotification.with(this)
+                .load()
+                .title("Trim")
+                .message(getResources().getString(R.string.you_have) + " " + allNote + " notes and " + allTodo + " to-do list")
+                .smallIcon(R.drawable.notif_logo)
+                .largeIcon(R.drawable.trim_logo_round)
+                .flags(Notification.DEFAULT_ALL)
+                .simple()
+                .build();
     }
 
     @Override
@@ -128,23 +176,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else {
             super.onBackPressed();
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main, menu);
-        this.menu = menu;
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_add_todo) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

@@ -77,17 +77,7 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                //Show alert dialog
-                new AlertDialog.Builder(SplashActivity.this)
-                        .setTitle(getResources().getString(R.string.failed))
-                        .setMessage(getResources().getString(R.string.failed1_message) + ". " + databaseError.getMessage())
-                        .setCancelable(false)
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                finish();
-                            }
-                        }).show();
+                //Do nothing
             }
         });
     }

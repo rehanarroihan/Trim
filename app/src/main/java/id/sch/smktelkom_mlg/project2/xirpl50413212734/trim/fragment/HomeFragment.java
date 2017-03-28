@@ -1,10 +1,7 @@
 package id.sch.smktelkom_mlg.project2.xirpl50413212734.trim.fragment;
 
-
-import android.app.Notification;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
@@ -21,12 +18,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import br.com.goncalves.pugnotification.notification.PugNotification;
 import id.sch.smktelkom_mlg.project2.xirpl50413212734.trim.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class HomeFragment extends Fragment {
     private TextView tvUser, tvEmail, tvLetter, tvTotalNote, tvTotalTodo;
     private FirebaseAuth mAuth;
@@ -109,18 +102,15 @@ public class HomeFragment extends Fragment {
                 tvUser.setText(username);
                 tvLetter.setText(username);
 
-                if (!TextUtils.isEmpty(username) && allNote != null) {
+                if (!TextUtils.isEmpty(username) || allNote != null) {
                     //Menghilangkan tamppilan loading
                     llLoading.setVisibility(View.GONE);
                     llContent.setVisibility(View.VISIBLE);
-
-                    pushNotification();
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Snackbar.make(getView(), databaseError.getMessage(), Snackbar.LENGTH_LONG).show();
             }
         });
 
@@ -135,20 +125,8 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Snackbar.make(getView(), databaseError.getMessage(), Snackbar.LENGTH_LONG).show();
+                //Snackbar.make(getView(), databaseError.getMessage(), Snackbar.LENGTH_LONG).show();
             }
         });
-    }
-
-    private void pushNotification() {
-        PugNotification.with(getActivity())
-                .load()
-                .title("Trim")
-                .message(getResources().getString(R.string.you_have) + " " + allNote + " notes and " + allTodo + " to-do list")
-                .smallIcon(R.drawable.trim_logo_round)
-                .largeIcon(R.drawable.trim_logo_round)
-                .flags(Notification.DEFAULT_ALL)
-                .simple()
-                .build();
     }
 }
