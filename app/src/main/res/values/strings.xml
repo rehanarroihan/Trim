@@ -83,14 +83,15 @@
 
     <!--About-->
     <string name="about1">
-        "TRIM" was created for fill up score in lesson mobile programming
-        in SMK Telkom Malang. We offer feature notes and to-do list that saved in
-        online database.
+        TRIM was made for fulfill the assignment
+        of Mobile Programming lesson in Telkom School Malang.
+        Offering notes and to-do list features that saves online.
     </string>
     <string name="about2">Thanks To</string>
     <string name="about3">Allah SWT || Parents || Teacher of SMK Telkom Malang || Stackoverflow</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="team">Team</string>
 
 </resources>

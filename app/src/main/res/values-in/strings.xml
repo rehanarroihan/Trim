@@ -83,11 +83,12 @@
 
     <!--About-->
     <string name="about1">
-        Aplikasi "TRIM" dibuat untuk memenuhi tugas pelajaran
+        TRIM dibuat untuk memenuhi tugas pelajaran
         Pemrograman Perangkat Bergerak SMK Telkom Malang.
         Menawarkan fitur notes dan to-do list yang disimpan secara
         online.
     </string>
+    <string name="team">Anggota Kelompok</string>
     <string name="about2">Terima Kasih Kepada</string>
     <string name="about3">Allah SWT || Kedua Orang Tua || Guru SMK Telkom Malang || Stackoverflow</string>
 

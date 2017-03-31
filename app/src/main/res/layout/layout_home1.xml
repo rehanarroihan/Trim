@@ -36,8 +36,8 @@
                 android:layout_width="80dp"
                 android:layout_height="match_parent"
                 android:maxLength="1"
-                android:paddingTop="15dp"
-                android:text=""
+                android:paddingTop="7dp"
+                android:text="R"
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
                 android:textSize="56sp" />
@@ -73,7 +73,6 @@
                 android:id="@+id/textViewEmailHome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="7dp"
                 android:layout_marginTop="-9dp"
                 android:maxLines="5"
                 android:paddingBottom="5dp"
