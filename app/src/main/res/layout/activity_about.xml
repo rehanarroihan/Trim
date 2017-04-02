@@ -20,6 +20,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="19dp"
+            android:layout_marginTop="-12dp"
+            android:text="Trim v5.0\nKelompok 3 XIRPL5\nSMK Telkom Malang"
+            android:textAlignment="center" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:padding="3dp"
             android:text="TRIM Project"
             android:textAlignment="center"

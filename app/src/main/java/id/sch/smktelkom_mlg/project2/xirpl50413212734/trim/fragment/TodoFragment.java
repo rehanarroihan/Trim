@@ -36,7 +36,7 @@ public class TodoFragment extends Fragment {
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDB;
     private DatabaseReference mDBtodo, mDBtodoUser, mDatabase;
-    private TextView tvNoTodo;
+    private LinearLayout llNoTodo;
 
     private ProgressBar pbTodo;
 
@@ -55,15 +55,15 @@ public class TodoFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        tvNoTodo = (TextView) getView().findViewById(R.id.textViewNoTodo);
+        llNoTodo = (LinearLayout) getView().findViewById(R.id.linearLayourNoTodo);
         pbTodo = (ProgressBar) getView().findViewById(R.id.progressBarTodo);
 
         mAuth = FirebaseAuth.getInstance();
         mDB = FirebaseDatabase.getInstance();
         mDBtodo = mDB.getReference().child("todo");
-        mDBtodoUser = mDBtodo.child(mAuth.getCurrentUser().getUid().toString());
+        mDBtodoUser = mDBtodo.child(mAuth.getCurrentUser().getUid());
 
-        mDatabase = mDB.getReference().child("todo").child(mAuth.getCurrentUser().getUid().toString());
+        mDatabase = mDB.getReference().child("todo").child(mAuth.getCurrentUser().getUid());
 
         mTodoList = (RecyclerView) getView().findViewById(R.id.recyclerViewTodo);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -80,10 +80,10 @@ public class TodoFragment extends Fragment {
                 if (jumlahChild == 0) {
                     Log.d("FirebaseCounter", "No item yet !");
                     pbTodo.setVisibility(View.GONE);
-                    tvNoTodo.setVisibility(View.VISIBLE);
+                    llNoTodo.setVisibility(View.VISIBLE);
                 } else {
                     pbTodo.setVisibility(View.GONE);
-                    tvNoTodo.setVisibility(View.GONE);
+                    llNoTodo.setVisibility(View.GONE);
                 }
             }
 
@@ -91,8 +91,8 @@ public class TodoFragment extends Fragment {
             public void onCancelled(DatabaseError databaseError) {
                 Log.d("FirebaseCounter", databaseError.getMessage());
                 pbTodo.setVisibility(View.GONE);
-                tvNoTodo.setVisibility(View.VISIBLE);
-                tvNoTodo.setText("Error." + " " + databaseError.getMessage());
+                llNoTodo.setVisibility(View.VISIBLE);
+                //tvNoTodo.setText("Error." + " " + databaseError.getMessage());
             }
         });
     }

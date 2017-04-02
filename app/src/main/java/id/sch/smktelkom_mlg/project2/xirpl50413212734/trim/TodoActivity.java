@@ -62,6 +62,12 @@ public class TodoActivity extends AppCompatActivity {
         etDo = (EditText) findViewById(R.id.editTextDo);
         etDoDesc = (EditText) findViewById(R.id.editTextDoDesc);
         etDoDate = (EditText) findViewById(R.id.editTextDoDate);
+        etDoDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateDate();
+            }
+        });
 
         ibDate = (ImageButton) findViewById(R.id.imageButtonDate);
         ibDate.setOnClickListener(new View.OnClickListener() {

@@ -126,6 +126,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Long jumlahNote = dataSnapshot.getChildrenCount();
                 allNote = Long.toString(jumlahNote);
                 Log.d("FirebaseCounter", allNote);
+
+                if (allNote != null) {
+                    push();
+                }
             }
 
             @Override

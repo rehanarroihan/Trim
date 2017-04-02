@@ -94,5 +94,16 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="plus_note">Klik tombol + untuk menambah notes</string>
+    <string name="skip">LEWATI</string>
+    <string name="slide_1_desc">Catat apa yang perlu anda catat</string>
+    <string name="slide_1_title">Notes</string>
+    <string name="slide_2_desc">Lakukan pencatatan dari aktifitas anda</string>
+    <string name="slide_2_title">To-Do List</string>
+    <string name="start">MULAI</string>
+    <string name="slide_3_title">Penyimpanan Online</string>
+    <string name="slide_3_desc">Data anda aman walau berganti perangkat</string>
+    <string name="next">LANJUT</string>
+    <string name="plus_todo">Ketuk tombol + untuk menambah jadwal</string>
 
 </resources>

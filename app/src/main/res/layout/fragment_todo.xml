@@ -4,18 +4,46 @@
     android:layout_height="match_parent"
     tools:context="id.sch.smktelkom_mlg.project2.xirpl50413212734.trim.fragment.TodoFragment">
 
-    <TextView
-        android:id="@+id/textViewNoTodo"
+    <LinearLayout
+        android:id="@+id/linearLayourNoTodo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:padding="17dp"
-        android:text="@string/no_notes"
-        android:textAlignment="center"
-        android:textColor="#BDBDBD"
-        android:textSize="22sp"
-        android:textStyle="italic"
-        android:visibility="gone" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="64dp"
+            android:padding="29dp"
+            android:src="@drawable/no_data" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-50dp"
+            android:padding="17dp"
+            android:text="@string/no_notes"
+            android:textAlignment="center"
+            android:textColor="#BDBDBD"
+            android:textSize="22sp"
+            android:textStyle="italic"
+            android:visibility="visible" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-36dp"
+            android:padding="17dp"
+            android:text="@string/plus_todo"
+            android:textAlignment="center"
+            android:textColor="#BDBDBD"
+            android:textSize="16sp"
+            android:textStyle="italic"
+            android:visibility="visible" />
+
+    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/progressBarTodo"

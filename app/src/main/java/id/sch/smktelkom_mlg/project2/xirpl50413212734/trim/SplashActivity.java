@@ -21,6 +21,7 @@ public class SplashActivity extends AppCompatActivity {
     private String username = "";
     private FirebaseDatabase mDB;
     private FirebaseAuth mAuth;
+    private PreferenceManager prefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,17 @@ public class SplashActivity extends AppCompatActivity {
                     }).show();
         }
 
+        prefManager = new PreferenceManager(this);
+        if (prefManager.isFirstTimeLaunch()) {
+            prefManager.setFirstTimeLaunch(false);
+            startActivity(new Intent(SplashActivity.this, IntroActivity.class));
+            finish();
+        } else {
+            checkLogin();
+        }
+    }
+
+    private void checkLogin() {
         if (mAuth.getCurrentUser() == null) {
             Intent i = new Intent(SplashActivity.this, LandingActivity.class);
             startActivity(i);
@@ -55,8 +67,7 @@ public class SplashActivity extends AppCompatActivity {
     public boolean konek(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
-        return activeNetwork != null
-                && activeNetwork.isConnectedOrConnecting();
+        return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
     }
 
     private void handleLoading() {

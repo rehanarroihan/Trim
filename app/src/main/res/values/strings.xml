@@ -66,6 +66,7 @@
     <string name="note_saved">Note saved</string>
     <string name="edit_note">Edit Note</string>
     <string name="no_notes">NO ITEM YET</string>
+    <string name="plus_note">Tap on + button to add a note</string>
 
     <!--Add/Edit Todolist Activity-->
     <string name="add_todo">Add To-Do List</string>
@@ -76,6 +77,7 @@
     <string name="todo_saved">Item saved</string>
     <string name="mark_done">Mark as Done</string>
     <string name="done">Task Done</string>
+    <string name="plus_todo">Tap on + button to add a list</string>
 
     <!--Home Fragment-->
     <string name="welcome">Welcome,</string>
@@ -89,6 +91,20 @@
     </string>
     <string name="about2">Thanks To</string>
     <string name="about3">Allah SWT || Parents || Teacher of SMK Telkom Malang || Stackoverflow</string>
+
+    <!--Intro Slider-->
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
+
+    <string name="slide_1_title">Notes</string>
+    <string name="slide_1_desc">Note what you need</string>
+
+    <string name="slide_2_title">To-Do List</string>
+    <string name="slide_2_desc">Make a list of your activities</string>
+
+    <string name="slide_3_title">Online Database</string>
+    <string name="slide_3_desc">Your data is save even if switching device</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

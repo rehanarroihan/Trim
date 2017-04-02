@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -34,7 +35,7 @@ public class NotesFragment extends Fragment {
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDB;
     private DatabaseReference mDBnote, mDBnoteUser;
-    private TextView tvNoNote;
+    private LinearLayout llNoNote;
 
     private ProgressBar pbNotes;
 
@@ -52,7 +53,7 @@ public class NotesFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        tvNoNote = (TextView) getView().findViewById(R.id.textViewNoNote);
+        llNoNote = (LinearLayout) getView().findViewById(R.id.linearLayourNoNote);
         pbNotes = (ProgressBar) getView().findViewById(R.id.progressBarNotes);
 
         mAuth = FirebaseAuth.getInstance();
@@ -75,10 +76,10 @@ public class NotesFragment extends Fragment {
                 if (jumlahChild == 0) {
                     Log.d("FirebaseCounter", "No item yet !");
                     pbNotes.setVisibility(View.GONE);
-                    tvNoNote.setVisibility(View.VISIBLE);
+                    llNoNote.setVisibility(View.VISIBLE);
                 } else {
                     pbNotes.setVisibility(View.GONE);
-                    tvNoNote.setVisibility(View.GONE);
+                    llNoNote.setVisibility(View.GONE);
                 }
             }
 
@@ -86,8 +87,8 @@ public class NotesFragment extends Fragment {
             public void onCancelled(DatabaseError databaseError) {
                 Log.d("FirebaseCounter", databaseError.getMessage());
                 pbNotes.setVisibility(View.GONE);
-                tvNoNote.setVisibility(View.VISIBLE);
-                tvNoNote.setText("Error." + " " + databaseError.getMessage());
+                llNoNote.setVisibility(View.VISIBLE);
+                //tvNoNote.setText("Error." + " " + databaseError.getMessage());
             }
         });
     }
